@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f9f9f9;
+    }
+    .input-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* Estilo para el botón encendido */
+    input[type="button"][data-state="ON"] {
+      background-color: red;
+      color: white;
+    }
+    .status {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Control de Dispositivos</h1>
+    <form id="deviceForm">
+      <label for="deviceSelect">Selecciona un Dispositivo:</label>
+      <select id="deviceSelect">
+        <option value="0">Dispositivo 1</option>
+        <option value="1">Dispositivo 2</option>
+        <option value="2">Dispositivo 3</option>
+        <option value="3">Dispositivo 4</option>
+        <option value="4">Dispositivo 5</option>
+        <option value="5">Dispositivo 6</option>
+        <option value="6">Dispositivo 7</option>
+        <option value="7">Dispositivo 8</option>
+      </select>
+
+      <label for="deviceState">Estado Actual:</label>
+      <div id="deviceState" class="status">Apagado</div>
+
+      <input type="button" value="Encender" data-state="OFF" onclick="toggleDevice('OFF')">
+      <input type="button" value="Apagar" data-state="OFF" onclick="toggleDevice('ON')">
+    </form>
+  </div>
+
+  <script>
+    function toggleDevice(action) {
+      var deviceIndex = document.getElementById("deviceSelect").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          updateDeviceState(deviceIndex, action);
+        }
+      };
+      xhttp.open("POST", "/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("device_" + deviceIndex + "=" + action);
+    }
+
+    function updateDeviceState(index, action) {
+      var stateElement = document.getElementById("deviceState");
+      stateElement.innerHTML = (action === "ON") ? "Apagado" : "Encendido";
+
+      // Actualiza el atributo 'data-state' en los botones
+      var buttons = document.querySelectorAll('input[type="button"]');
+      buttons.forEach(function(button) {
+        button.setAttribute('data-state', action);
+      });
+    }
+  </script>
+</body>
+</html>
