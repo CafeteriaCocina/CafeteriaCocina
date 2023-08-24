@@ -8,7 +8,7 @@ function toggleDevice(action) {
       updateDeviceState(deviceIndex, action);
     }
   };
-  xhttp.open("POST", "/", true);
+  xhttp.open("POST", "http://192.168.0.20/", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("device_" + deviceIndex + "=" + action);
 }
