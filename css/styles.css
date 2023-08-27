@@ -29,7 +29,8 @@ label {
 }
 
 /* Estilos para select y botones */
-select, input[type="button"] {
+select,
+input[type="button"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -43,5 +44,3 @@ select, input[type="button"] {
   font-weight: bold;
   margin-top: 10px;
 }
-
-
