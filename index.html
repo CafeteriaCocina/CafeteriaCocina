@@ -2,24 +2,15 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* Aquí va el estilo CSS que te proporcioné anteriormente */
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Control de Dispositivos</h1>
+    <h1>Control De Lamparas</h1>
     <form id="deviceForm">
       <label for="deviceSelect">Selecciona un Dispositivo:</label>
       <select id="deviceSelect">
-        <option value="0">Dispositivo 1</option>
-        <option value="1">Dispositivo 2</option>
-        <option value="2">Dispositivo 3</option>
-        <option value="3">Dispositivo 4</option>
-        <option value="4">Dispositivo 5</option>
-        <option value="5">Dispositivo 6</option>
-        <option value="6">Dispositivo 7</option>
-        <option value="7">Dispositivo 8</option>
+        <!-- Opciones de dispositivos aquí -->
       </select>
 
       <label for="deviceState">Estado Actual:</label>
@@ -27,27 +18,12 @@
 
       <input type="button" value="Encender" onclick="toggleDevice('OFF')">
       <input type="button" value="Apagar" onclick="toggleDevice('ON')">
+      <input type="button" value="Encender Todos" onclick="toggleAllDevices('ON')">
+      <input type="button" value="Apagar Todos" onclick="toggleAllDevices('OFF')">
     </form>
   </div>
 
-  <script>
-    function toggleDevice(action) {
-      var deviceIndex = document.getElementById("deviceSelect").value;
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          updateDeviceState(deviceIndex, action);
-        }
-      };
-      xhttp.open("POST", "http://192.168.0.20/", true);
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("device_" + deviceIndex + "=" + action);
-    }
-
-    function updateDeviceState(index, action) {
-      var stateElement = document.getElementById("deviceState");
-      stateElement.innerHTML = (action === "ON") ? "Apagado" : "Encendido";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+
