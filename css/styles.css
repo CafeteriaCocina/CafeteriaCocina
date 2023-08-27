@@ -1,11 +1,12 @@
-/* style.css */
-
+/* Estilos generales */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
   background-color: #f4f4f4;
 }
+
+/* Contenedor principal */
 .container {
   max-width: 400px;
   margin: 0 auto;
@@ -14,35 +15,33 @@ body {
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Encabezado */
 h1 {
   text-align: center;
   margin-bottom: 20px;
 }
+
+/* Etiqueta de selección */
 label {
   display: block;
   margin-bottom: 5px;
 }
-select,
-input[type="button"] {
+
+/* Estilos para select y botones */
+select, input[type="button"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+
+/* Estado del dispositivo */
 .status {
   text-align: center;
   font-weight: bold;
   margin-top: 10px;
 }
 
-/* Personaliza los botones cuando el estado cambia */
-input[type="button"][data-state="ON"] {
-  background-color: red;
-  color: white;
-}
-input[type="button"][data-state="OFF"] {
-  background-color: green;
-  color: white;
-}
 
