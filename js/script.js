@@ -1,26 +1,17 @@
-// script.js
-
 function toggleDevice(action) {
-  var deviceIndex = document.getElementById("deviceSelect").value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      updateDeviceState(deviceIndex, action);
-    }
-  };
-  xhttp.open("POST", "http://192.168.0.20/", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("device_" + deviceIndex + "=" + action);
+  // Código JavaScript aquí
+}
+
+function toggleAllDevices(action) {
+  // Código JavaScript aquí
 }
 
 function updateDeviceState(index, action) {
-  var stateElement = document.getElementById("deviceState");
-  stateElement.innerHTML = (action === "ON") ? "Apagado" : "Encendido";
-
-  // Actualiza el atributo 'data-state' en los botones
-  var buttons = document.querySelectorAll('input[type="button"]');
-  buttons.forEach(function(button) {
-    button.setAttribute('data-state', action);
-  });
+  // Código JavaScript aquí
 }
+
+function updateAllDeviceStates(action) {
+  // Código JavaScript aquí
+}
+
 
