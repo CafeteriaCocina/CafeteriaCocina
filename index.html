@@ -2,7 +2,42 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .status {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -10,7 +45,14 @@
     <form id="deviceForm">
       <label for="deviceSelect">Selecciona un Dispositivo:</label>
       <select id="deviceSelect">
-        <!-- Opciones de dispositivos aquí -->
+        <option value="0">No Asignado</option>
+        <option value="1">Luz Almacen</option>
+        <option value="2">Luz Cocina</option>
+        <option value="3">Luz Cafeteria</option>
+        <option value="4">Luz Corredor</option>
+        <option value="5">Luz Arcos</option>
+        <option value="6">No Asignado</option>
+        <option value="7">No Asignado</option>
       </select>
 
       <label for="deviceState">Estado Actual:</label>
@@ -23,7 +65,48 @@
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function toggleDevice(action) {
+      var deviceIndex = document.getElementById("deviceSelect").value;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          updateDeviceState(deviceIndex, action);
+        }
+      };
+      xhttp.open("POST", "/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("device_" + deviceIndex + "=" + action);
+    }
+
+    function toggleAllDevices(action) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          updateAllDeviceStates(action);
+        }
+      };
+      xhttp.open("POST", "/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("all_devices=" + action);
+    }
+
+    function updateDeviceState(index, action) {
+      var stateElement = document.getElementById("deviceState");
+      stateElement.innerHTML = (action === "ON") ? "Apagado" : "Encendido";
+    }
+
+    function updateAllDeviceStates(action) {
+      var stateElements = document.querySelectorAll(".status");
+      for (var i = 0; i < stateElements.length; i++) {
+        stateElements[i].innerHTML = (action === "ON") ? "Encendido" : "Apagado";
+      }
+    }
+  </script>
 </body>
 </html>
+<div style="text-align:center;">
+    <p>&copy; 2023 LuBuDesign. Todos los derechos reservados.+522361079311</p>
+  </div>
+)HTML";
 
